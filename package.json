@@ -1,5 +1,5 @@
 {
-  "name": "chainr",
+  "name": "chaind",
   "version": "1.0.0",
   "description": "Lightweight util for function composition",
   "main": "lib/common/index.js",

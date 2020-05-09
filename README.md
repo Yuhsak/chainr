@@ -1,10 +1,10 @@
-# chainr
+# chaind
 Lightweight util for function composition
 
 ## install
 
 ```sh
-$ npm i chainr
+$ npm i chaind
 ```
 
 ## usage
@@ -12,7 +12,7 @@ $ npm i chainr
 ### basics
 
 ```ts
-import { chainr } from 'chainr'
+import { chainr } from 'chaind'
 
 const c1 = chainr((arg1: string) => arg1 + '_c1')
 const c2 = chainr((arg2: string) => arg2 + '_c2')
@@ -40,7 +40,7 @@ result2.then(res => console.log(res))
 ### typing
 
 ```ts
-import { chainr, TypedChainr } from 'chainr'
+import { chainr, TypedChainr } from 'chaind'
 
 // TypedChainr<Input, Output>
 const typed:TypedChainr<string, string> = chainr
@@ -51,7 +51,7 @@ const c1 = typed(arg => arg.length + 1 )
 ### small example
 
 ```ts
-import { chainr } from 'chainr'
+import { chainr } from 'chaind'
 
 type ReqParam = {
   url: string,
@@ -77,7 +77,7 @@ const postParam = createGetParam('/profile')
 ### give in/out interface
 
 ```ts
-import { chainr, finalizr } from 'chainr'
+import { chainr, finalizr } from 'chaind'
 
 type ReqParam = {
   url: string,
@@ -116,7 +116,7 @@ const postEntry = get<{id: string, content: object}, {success: boolean}>(endpoin
 ### composition utils
 
 ```ts
-import { chainr, pipe, compose } from 'chainr'
+import { chainr, pipe, compose } from 'chaind'
 
 const chnr:TypedChainr<Record<string, number>> = chainr
 
