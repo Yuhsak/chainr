@@ -1,14 +1,7 @@
-import {
-  chainr,
-  pipe,
-  compose,
-  TypedChainr,
-} from '../src'
+import { chainr, pipe, compose, TypedChainr } from '../src'
 
 describe('pipe', () => {
-
   test('works', () => {
-
     const c1 = chainr((arg: string) => arg + 'c1')
     const c2 = chainr((arg: string) => arg + 'c2')
 
@@ -30,11 +23,9 @@ describe('pipe', () => {
     const p2c3 = p2(c3())
 
     expect(p2c3()).toEqual('ok')
-
   })
 
   test('async', async () => {
-
     const c1 = chainr((arg: string) => arg + 'c1')
     const c2 = chainr(async (arg: string) => arg + 'c2')
     const c3 = chainr((arg: string) => arg + 'c3')
@@ -43,18 +34,16 @@ describe('pipe', () => {
     const p = pipe(c1, c2, c3)
 
     await expect(p()('a')).resolves.toEqual('ac1c2c3')
-
   })
 
   test('with compose', () => {
+    const chnr: TypedChainr<Record<string, number>> = chainr
 
-    const chnr:TypedChainr<Record<string, number>> = chainr
-
-    const c1 = chnr(obj => ({...obj, c1: Object.keys(obj).length}))
-    const c2 = chnr(obj => ({...obj, c2: Object.keys(obj).length}))
-    const c3 = chnr(obj => ({...obj, c3: Object.keys(obj).length}))
-    const c4 = chnr(obj => ({...obj, c4: Object.keys(obj).length}))
-    const c5 = chnr(obj => ({...obj, c5: Object.keys(obj).length}))
+    const c1 = chnr((obj) => ({ ...obj, c1: Object.keys(obj).length }))
+    const c2 = chnr((obj) => ({ ...obj, c2: Object.keys(obj).length }))
+    const c3 = chnr((obj) => ({ ...obj, c3: Object.keys(obj).length }))
+    const c4 = chnr((obj) => ({ ...obj, c4: Object.keys(obj).length }))
+    const c5 = chnr((obj) => ({ ...obj, c5: Object.keys(obj).length }))
 
     const cp1 = compose(c1, c2)
     const pp1 = pipe(c3, c4)
@@ -63,8 +52,6 @@ describe('pipe', () => {
 
     const cp1pp1c5 = cp1pp1(c5())
 
-    expect(cp1pp1c5({})).toStrictEqual({c1: 0, c2: 0, c3: 2, c4: 3, c5: 4})
-
+    expect(cp1pp1c5({})).toStrictEqual({ c1: 0, c2: 0, c3: 2, c4: 3, c5: 4 })
   })
-
 })
