@@ -1,17 +1,13 @@
 module.exports = {
   verbose: true,
-  roots: [
-    '<rootDir>/test'
-  ],
+  roots: ['<rootDir>/test'],
   transform: {
-    '^.+\\.ts$': 'ts-jest'
+    '^.+\\.ts$': 'ts-jest',
   },
   globals: {
     'ts-jest': {
-      tsConfig: 'tsconfig.test.json'
-    }
+      tsconfig: 'tsconfig.test.json',
+    },
   },
-  testMatch: [
-    '**/test/**/*.ts',
-  ],
+  testMatch: ['**/test/**/*.ts'],
 }
